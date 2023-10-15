@@ -9,6 +9,7 @@ public enum Status {
 		this.value = value;
 	}
 
+	// return the int value
 	public Integer getValue() {
 		return this.value;
 	}
