@@ -10,11 +10,7 @@ public enum Status {
 	}
 
 	public Integer getValue() {
-		return switch (this) {
-		case NEW -> 1;
-		case IN_PROGRESS -> 2;
-		case COMPLETED -> 3;
-		};
+		return this.value;
 	}
 
 }
