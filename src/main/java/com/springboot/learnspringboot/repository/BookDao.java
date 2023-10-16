@@ -16,24 +16,24 @@ import jakarta.persistence.criteria.Root;
 
 @Repository("bookDao")
 public class BookDao {
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public List<Book> findBookByStatus(Status status) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
-        Root<Book> root = criteriaQuery.from(Book.class);
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
+		Root<Book> root = criteriaQuery.from(Book.class);
 
-        // Create predicates for filtering
-        if (status != null) {
-        	Predicate predicate = criteriaBuilder.equal(root.get("status"), status);
-        	// Apply predicates to the criteria query
-        	criteriaQuery.where(predicate);
-        }
+		// Create predicates for filtering
+		if (status != null) {
+			Predicate predicate = criteriaBuilder.equal(root.get("status"), status);
+			// Apply predicates to the criteria query
+			criteriaQuery.where(predicate);
+		}
 
-        // Execute the query and return results
-        return entityManager.createQuery(criteriaQuery).getResultList();
+		// Execute the query and return results
+		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
 
 }
